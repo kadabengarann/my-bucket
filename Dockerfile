@@ -14,7 +14,7 @@ COPY . .
 RUN mkdir -p storage
 
 # Expose the app port
-EXPOSE 8000
+EXPOSE 80
 
 # Run FastAPI with Uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
