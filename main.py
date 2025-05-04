@@ -13,6 +13,9 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 API_TOKEN = os.getenv("API_TOKEN")
 
 app = FastAPI()
+
+app.get("/")(lambda: {"message": "Success"})
+
 app.mount("/static", StaticFiles(directory=UPLOAD_DIR), name="static")
 
 if MAPPING_FILE.exists():
