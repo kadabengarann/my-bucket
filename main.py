@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException, Header, Form
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 import os
 import json
 import uuid
@@ -13,6 +14,14 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 API_TOKEN = os.getenv("API_TOKEN")
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or restrict to specific domain(s)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.get("/")(lambda: {"message": "Success"})
 
